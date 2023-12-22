@@ -1,0 +1,81 @@
+<!-- my-form.component.html -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Calculadora de Productos</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="calculadoraForm">
+            <div class="mb-3">
+              <label for="selectOption" class="form-label"
+                >Selecciona Producto:</label
+              >
+              <select
+                id="selectOption"
+                class="form-select"
+                formControlName="producto"
+              >
+                <option
+                  *ngFor="let producto of productosSelectOptions"
+                  [value]="producto.id"
+                >
+                  {{ producto.producto }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="plazo" class="form-label">Plazo:</label>
+              <input
+                type="number"
+                id="plazo"
+                class="form-control"
+                placeholder="Enter Plazo"
+                formControlName="plazo"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="creationDate" class="form-label">Fecha:</label>
+              <input
+                type="date"
+                id="creationDate"
+                class="form-control"
+                formControlName="fechaCreacion"
+              />
+            </div>
+
+            <button type="button" class="btn btn-primary" (click)="onClick()">
+              Calcular
+            </button>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-6"></div>
+    <div class="row mt-4">
+      <div class="col-md-8">
+        <h4>Received Data</h4>
+        <table class="table table-bordered" aria-describedby="table-description">
+          <thead>
+            <tr>
+              <th>Plazo</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
+              <th>Plazo real</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ resultadosCalculadora.plazo }}</td>
+              <td>{{ resultadosCalculadora.fechaInicio | date : "yyyy-MM-dd" }}</td>
+              <td>{{ resultadosCalculadora.fechaFin | date : "yyyy-MM-dd" }}</td>
+              <td>{{ resultadosCalculadora.plazoReal }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
