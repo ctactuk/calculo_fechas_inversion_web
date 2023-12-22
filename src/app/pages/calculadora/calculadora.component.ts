@@ -31,12 +31,11 @@ export class CalculadoraComponent implements OnInit {
     });
   }
 
-  onClick() {
+  handleOnClickCalcular() {
     this.apiService
       .obtenerCalculo(this.calculadoraForm.value)
       .subscribe((data) => {
         this.resultadosCalculadora = data;
-        console.log(this.resultadosCalculadora);
-      });
+      },);
   }
 }
