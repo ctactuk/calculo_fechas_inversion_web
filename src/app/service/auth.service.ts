@@ -29,7 +29,7 @@ export class AuthService {
 
   setToken(token: any): void {
     this.token = token;
-    localStorage.setItem('token', token); // Store the token in local storage
+    localStorage.setItem('token', token);
   }
 
   getToken() {
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('token'); // Remove the token from local storage
+    localStorage.removeItem('token');
     this.setToken(null);
     this.setAuthenticated(false);
   }
