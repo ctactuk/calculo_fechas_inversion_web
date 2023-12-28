@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/app.model';
 import { ApiService } from 'src/app/service/api.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-calculadora',
@@ -19,9 +19,10 @@ export class CalculadoraComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.calculadoraForm = this.formBuilder.group({
-      producto: [''],
-      plazo: [''],
-      fechaCreacion: [''],
+      producto: ['', Validators.required],
+      plazo: ['', Validators.required],
+      fechaCreacion: ['', Validators.required],
+      enReinversion: [false, Validators.required],
     });
   }
 
@@ -32,6 +33,7 @@ export class CalculadoraComponent implements OnInit {
   }
 
   handleOnClickCalcular() {
+    // console.log(this.calculadoraForm.value);
     this.apiService
       .obtenerCalculo(this.calculadoraForm.value)
       .subscribe((data) => {

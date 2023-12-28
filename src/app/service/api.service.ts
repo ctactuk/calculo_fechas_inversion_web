@@ -12,16 +12,10 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   obtenerProductos() {
-    const headers = {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    };
-    return this.http.get<Producto[]>(this.API_HOST + 'productos/', { headers });
+    return this.http.get<Producto[]>(this.API_HOST + 'productos/');
   }
 
   obtenerCalculo(data: any) {
-    const headers = {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    };
-    return this.http.post(this.API_HOST + 'calcularfechas', data, { headers });
+    return this.http.post(this.API_HOST + 'calcularfechas', data);
   }
 }
